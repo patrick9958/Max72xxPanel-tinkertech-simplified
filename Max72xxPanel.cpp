@@ -14,6 +14,7 @@
  All text above must be included in any redistribution.
  ******************************************************************/
 
+#include "Arduino.h"
 #include <Adafruit_GFX.h>
 #include "Max72xxPanel.h"
 #include <SPI.h>
@@ -191,4 +192,31 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 
 	// Latch the data onto the display(s)
 	digitalWrite(SPI_CS, HIGH);
+}
+
+// TODO: ARE STRINGS SUPPORTED? string or String? need #include <string>?
+void Max72xxPanel::printToDisplay(String tape, int wait, int spacer = 1; int letter_width = 5) {
+	
+	int width = Adafruit_GFX::width();
+	int height = Adafruit_GFX::height();
+
+	for(int i = 0; i < tape.length() + width - 1 - spacer; i++) {
+		matrix.fillScreen(LOW);
+
+		int letter = i / letter_width;
+	    int x = (width - 1) - i % letter_width;
+	    int y = (height - 8) / 2; // center the text vertically
+
+	    while(x + letter_width - spacer >= 0 && letter >= 0) {
+	    	if(letter < tape.length()) {
+	    		Adafruit_GFX::drawChar(x, y, tape[letter], HIGH, LOW, 1);
+	    	}
+
+	    	letter--;
+      		x -= width;
+	    }
+
+	    write();
+	    delay(wait);
+	}
 }
