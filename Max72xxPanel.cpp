@@ -201,7 +201,7 @@ void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_
 	int height = this->Adafruit_GFX::height();
 
 	for(int i = 0; i < tape.length() + width - 1 - spacer; i++) {
-		this->Max72xxPanel::fillScreen(LOW);
+		this->fillScreen(LOW);
 
 		int letter = i / letter_width;
 	    int x = (width - 1) - i % letter_width;
@@ -216,7 +216,7 @@ void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_
       		x -= width;
 	    }
 
-	    this->Max72xxPanel::write();
+	    this->write();
 	    delay(wait);
 	}
 }
