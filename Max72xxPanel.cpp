@@ -201,7 +201,7 @@ void printToDisplay(String tape, int wait, int spacer, int letter_width) {
 	int height = Adafruit_GFX::height();
 
 	for(int i = 0; i < tape.length() + width - 1 - spacer; i++) {
-		matrix.fillScreen(LOW);
+		fillScreen(LOW);
 
 		int letter = i / letter_width;
 	    int x = (width - 1) - i % letter_width;
