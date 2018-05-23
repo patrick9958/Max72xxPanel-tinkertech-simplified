@@ -196,15 +196,15 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 
 // TODO: ARE STRINGS SUPPORTED? string or String? need #include <string>?
 void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_width) {
-	// note: by default spacer and letter_width are initialized to 1 and 5 respectively
-	int width = this->Adafruit_GFX::width();
+	// note: by default spacer and letter_width are initialized to 1 and 5 + spacer respectively
+	int matrix_width = this->Adafruit_GFX::width();
 	int height = this->Adafruit_GFX::height();
 
-	for(int i = 0; i < letter_width * tape.length() + width - 1 - spacer; i++) {
+	for(int i = 0; i < letter_width * tape.length() + matrix_width - 1 - spacer; i++) {
 		this->fillScreen(LOW);
 
 		int letter = i / letter_width;
-    int x = (width - 1) - i % letter_width;
+    int x = (matrix_width - 1) - i % letter_width;
     int y = (height - 8) / 2; // center the text vertically
 
     while(x + letter_width - spacer >= 0 && letter >= 0) {
@@ -213,9 +213,8 @@ void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_
     	}
 
     	letter--;
-    		x -= width;
+      x -= letter_width;
     }
-
     this->write();
     delay(wait);
 	}
