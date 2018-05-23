@@ -194,13 +194,11 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 	digitalWrite(SPI_CS, HIGH);
 }
 
-// TODO: ARE STRINGS SUPPORTED? string or String? need #include <string>?
-void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_width) {
-  spacer += 1;
-  letter_width += 6;
+void Max72xxPanel::printToDisplay(String tape, int wait, int letter_width, int spacer) {
+	spacer += 1;
+	letter_width += 6;
 
-	// note: by default spacer and letter_width are initialized to 1 and 5 + spacer respectively
-  letter_width += spacer; // Add the spacer width to the letter width to get the real width
+  	letter_width += spacer; // Add the spacer width to the letter width to get the real width
 	int matrix_width = this->Adafruit_GFX::width();
 	int height = this->Adafruit_GFX::height();
 
@@ -208,18 +206,18 @@ void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_
 		this->fillScreen(LOW);
 
 		int letter = i / letter_width;
-    int x = (matrix_width - 1) - i % letter_width;
-    int y = (height - 8) / 2; // center the text vertically
+	int x = (matrix_width - 1) - i % letter_width;
+	int y = (height - 8) / 2; // center the text vertically
 
-    while(x + letter_width - spacer >= 0 && letter >= 0) {
-    	if(letter < tape.length()) {
-    		this->Adafruit_GFX::drawChar(x, y, tape[letter], HIGH, LOW, 1);
-    	}
+	while(x + letter_width - spacer >= 0 && letter >= 0) {
+		if(letter < tape.length()) {
+			this->Adafruit_GFX::drawChar(x, y, tape[letter], HIGH, LOW, 1);
+		}
 
-    	letter--;
-      x -= letter_width;
-    }
-    this->write();
-    delay(wait);
+		letter--;
+	  x -= letter_width;
+	}
+	this->write();
+	delay(wait);
 	}
 }

@@ -106,7 +106,7 @@ public:
    * letter_width is letter width
    * wait controls the speed of text flow
    */
-  void printToDisplay(String tape, int wait, int spacer = 0, int letter_width = 0);
+  void printToDisplay(String tape, int wait, int letter_width = 0, int spacer = 0);
 
 private:
   byte SPI_CS; /* SPI chip selection */
