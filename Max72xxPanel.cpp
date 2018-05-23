@@ -200,23 +200,23 @@ void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_
 	int width = this->Adafruit_GFX::width();
 	int height = this->Adafruit_GFX::height();
 
-	for(int i = 0; i < tape.length() + width - 1 - spacer; i++) {
+	for(int i = 0; i < letter_width * tape.length() + width - 1 - spacer; i++) {
 		this->fillScreen(LOW);
 
 		int letter = i / letter_width;
-	    int x = (width - 1) - i % letter_width;
-	    int y = (height - 8) / 2; // center the text vertically
+    int x = (width - 1) - i % letter_width;
+    int y = (height - 8) / 2; // center the text vertically
 
-	    while(x + letter_width - spacer >= 0 && letter >= 0) {
-	    	if(letter < tape.length()) {
-	    		this->Adafruit_GFX::drawChar(x, y, tape[letter], HIGH, LOW, 1);
-	    	}
+    while(x + letter_width - spacer >= 0 && letter >= 0) {
+    	if(letter < tape.length()) {
+    		this->Adafruit_GFX::drawChar(x, y, tape[letter], HIGH, LOW, 1);
+    	}
 
-	    	letter--;
-      		x -= width;
-	    }
+    	letter--;
+    		x -= width;
+    }
 
-	    this->write();
-	    delay(wait);
+    this->write();
+    delay(wait);
 	}
 }
