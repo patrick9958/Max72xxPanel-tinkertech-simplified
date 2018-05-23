@@ -9,7 +9,7 @@ int numberOfVerticalDisplays = 1;
 
 Max72xxPanel matrix = Max72xxPanel(pinCS, numberOfHorizontalDisplays, numberOfVerticalDisplays);
 
-String tape = "Hello :)";
+String tape = "HHHH :)";
 int wait = 20; // In milliseconds
 
 int spacer = 1;
@@ -36,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-
+  matrix.printToDisplay(tape, wait);
   for ( int i = 0 ; i < width * tape.length() + matrix.width() - 1 - spacer; i++ ) {
 
     matrix.fillScreen(LOW);
@@ -59,4 +59,3 @@ void loop() {
     delay(wait);
   }
 }
-

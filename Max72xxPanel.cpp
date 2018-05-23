@@ -196,7 +196,11 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 
 // TODO: ARE STRINGS SUPPORTED? string or String? need #include <string>?
 void Max72xxPanel::printToDisplay(String tape, int wait, int spacer, int letter_width) {
+  spacer += 1;
+  letter_width += 6;
+
 	// note: by default spacer and letter_width are initialized to 1 and 5 + spacer respectively
+  letter_width += spacer; // Add the spacer width to the letter width to get the real width
 	int matrix_width = this->Adafruit_GFX::width();
 	int height = this->Adafruit_GFX::height();
 
