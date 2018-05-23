@@ -195,7 +195,7 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 }
 
 // TODO: ARE STRINGS SUPPORTED? string or String? need #include <string>?
-void Max72xxPanel::printToDisplay(String tape, int wait, int spacer = 1; int letter_width = 5) {
+void Max72xxPanel::printToDisplay(String tape, int wait, int spacer = 1, int letter_width = 5) {
 	
 	int width = Adafruit_GFX::width();
 	int height = Adafruit_GFX::height();
