@@ -1,5 +1,4 @@
 # Max72xxPanel Simplified
-============
 
 An Arduino library for controlling a canvas of sets of 8x8 LEDs driven by MAX7219 or MAX7221 controllers. [Kits][hardware] sold for below 10 USD.
 
