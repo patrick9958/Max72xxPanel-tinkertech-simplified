@@ -12,9 +12,6 @@ Max72xxPanel matrix = Max72xxPanel(pinCS, numberOfHorizontalDisplays, numberOfVe
 String tape = "TinkerTech :)";
 int wait = 20; // In milliseconds
 
-int spacer = 1;
-int width = 5 + spacer; // The font width is 5 pixels
-
 void setup() {
 
   matrix.setIntensity(7); // Use a value between 0 and 15 for brightness
@@ -24,7 +21,7 @@ void setup() {
   matrix.setPosition(2, 2, 0); // The third display is at <2, 0>
   matrix.setPosition(3, 3, 0); // And the last display is at <3, 0>
 
-  // TODO: IS THERE ANY WAY TO WRITE THIS IN A LOOP? (ask campers)
+  // TODO: IS THERE ANY WAY TO WRITE THIS IN A LOOP?
   matrix.setRotation(0, 1);
   matrix.setRotation(1, 1);
   matrix.setRotation(2, 1);
@@ -36,27 +33,6 @@ void setup() {
 }
 
 void loop() {
-
-  for ( int i = 0 ; i < width * tape.length() + matrix.width() - 1 - spacer; i++ ) {
-
-    matrix.fillScreen(LOW);
-
-    int letter = i / width;
-    int x = (matrix.width() - 1) - i % width;
-    int y = (matrix.height() - 8) / 2; // center the text vertically
-
-    while ( x + width - spacer >= 0 && letter >= 0 ) {
-      if ( letter < tape.length() ) {
-        matrix.drawChar(x, y, tape[letter], HIGH, LOW, 1);
-      }
-
-      letter--;
-      x -= width;
-    }
-
-    matrix.write(); // Send bitmap to display
-
-    delay(wait);
-  }
+  matrix.printToDisplay(tape, wait);
 }
 
