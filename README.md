@@ -2,6 +2,7 @@
 
 An Arduino library for controlling a canvas of sets of 8x8 LEDs driven by MAX7219 or MAX7221 controllers. [Kits][hardware] sold for below 10 USD.
 
+
 This is a simplified version of the original Max72xxPanel Arduino library for use at TinkerTech camps, notably a printToDisplay() function within the Max72xxPanel class that easily allows users to print to matrix LEDs
 
 This is a plugin for Adafruit's core graphics library GFX, providing basic graphics primitives (points, lines, circles, characters, etc.). So besides this library, you need to download and install [Adafruit_GFX][gfx-download], *dated Jul 5th, 2013 or more recent*.
@@ -11,10 +12,13 @@ Written by Mark Ruys, <mark@paracas.nl>, 2013.
 Edited by Patrick Neggie <patmn@umich.edu> 2018.
 
 
+
+
 Installation
 ------------
 
 Place the [Max72xxPanel-simplified][download] and [Adafruit_GFX][gfx-download] library folders in your `<arduinosketchfolder>/libraries/` folder. You may need to create the `libraries` subfolder if its your first library. Restart the Arduino IDE. 
+
 
 
 Features
@@ -34,6 +38,7 @@ Read [overview][gfx-docs] for instructions how to use Adafruit_GFX. Check out ou
 At YouTube, you'll find a [ticker tape][tickertape] and [snake] demo.
 
 
+
 [download]: https://github.com/TinkerYpsi/Max72xxPanel-tinkertech-simplified/archive/master.zip "Download Max72xxPanel-simplified library"
 [gfx-download]: https://github.com/adafruit/Adafruit-GFX-Library "Download Adafruit GFX Graphics Library"
 [gfx-docs]: http://learn.adafruit.com/adafruit-gfx-graphics-library/overview "Documentation Adafruit GFX Graphics Library"
@@ -42,3 +47,4 @@ At YouTube, you'll find a [ticker tape][tickertape] and [snake] demo.
 [spi]: http://arduino.cc/en/Reference/SPI "SPI library"
 [tickertape]: http://www.youtube.com/watch?v=a8T7ZFeaf1A "Max72xxPanel Arduino library demo (ticker tape)"
 [snake]: http://www.youtube.com/watch?v=FbJJyuCwohs "Max72xxPanel Arduino library demo (snake)"
+
