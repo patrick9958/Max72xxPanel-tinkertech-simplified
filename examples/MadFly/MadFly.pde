@@ -1,12 +1,12 @@
 #include <SPI.h>
 #include <Adafruit_GFX.h>
-#include <Max72xxPanel.h>
+#include <TT_Max72xx.h>
 
 int pinCS = 10; // Attach CS to this pin, DIN to MOSI and CLK to SCK (cf http://arduino.cc/en/Reference/SPI )
 int numberOfHorizontalDisplays = 1;
 int numberOfVerticalDisplays = 1;
 
-Max72xxPanel matrix = Max72xxPanel(pinCS, numberOfHorizontalDisplays, numberOfVerticalDisplays);
+TT_Max72xx matrix = TT_Max72xx(pinCS, numberOfHorizontalDisplays, numberOfVerticalDisplays);
 
 int pinRandom = A0;
 

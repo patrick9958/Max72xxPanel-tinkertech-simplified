@@ -18,8 +18,8 @@
 
  ******************************************************************/
 
-#ifndef Max72xxPanel_h
-#define Max72xxPanel_h
+#ifndef TT_Max72xx_h
+#define TT_Max72xx_h
 
 #if (ARDUINO >= 100)
   #include <Arduino.h>
@@ -28,7 +28,7 @@
   #include "pins_arduino.h"
 #endif
 
-class Max72xxPanel : public Adafruit_GFX {
+class TT_Max72xx : public Adafruit_GFX {
 
 public:
 
@@ -39,7 +39,7 @@ public:
    * hDisplays  number of displays horizontally
    * vDisplays  number of displays vertically
    */
-  Max72xxPanel(byte csPin, byte hDisplays=1, byte vDisplays=1);
+  TT_Max72xx(byte csPin, byte hDisplays=1, byte vDisplays=1);
 
 	/*
 	 * Define how the displays are ordered. The first display (0)
@@ -123,4 +123,4 @@ private:
   byte *matrixRotation;
 };
 
-#endif	// Max72xxPanel_h
+#endif	// TT_Max72xx_h
