@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Max72xxPanel	KEYWORD1
+TT_Max72xx	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -41,4 +41,3 @@ getRotation	KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
-
