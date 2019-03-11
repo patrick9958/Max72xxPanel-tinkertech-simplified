@@ -1,19 +1,24 @@
-# Max72xxPanel Simplified
+# TinkerTech Max72xxPanel Arduino Library
 
 An Arduino library for controlling a canvas of sets of 8x8 LEDs driven by MAX7219 or MAX7221 controllers. [Kits][hardware] sold for below 10 USD.
 
-This is a simplified version of the original Max72xxPanel Arduino library for use at TinkerTech camps, notably a printToDisplay() function within the Max72xxPanel class that easily allows users to print to matrix LEDs 
 
-This is a plugin for Adafruit's core graphics library GFX, providing basic graphics primitives (points, lines, circles, characters, etc.). So besides this library, you need to download and install [Adafruit_GFX][gfx-download], *dated Jul 5th, 2013 or more recent*. 
+This is a simplified version of the original Max72xxPanel Arduino library for use at TinkerTech camps, notably a printToDisplay() function within the TT_Max72xx class that easily allows users to print to matrix LEDs
 
-Written by Mark Ruys, <mark@paracas.nl>, 2013.
-Edited by Patrick Neggie <patmn@umich.edu> 2018
+This is a plugin for Adafruit's core graphics library GFX, providing basic graphics primitives (points, lines, circles, characters, etc.). So besides this library, you need to download and install [Adafruit_GFX][gfx-download], *dated Jul 5th, 2013 or more recent*.
+
+Created by Mark Ruys, <mark@paracas.nl>, 2013.
+
+Edited by Patrick Neggie <patmn@umich.edu> 2018.
+
+
 
 
 Installation
 ------------
 
-Place the [Max72xxPanel][download] and [Adafruit_GFX][gfx-download] library folders in your `<arduinosketchfolder>/libraries/` folder. You may need to create the `libraries` subfolder if its your first library. Restart the Arduino IDE. 
+Place the [TT_Max72xx][download] and [Adafruit_GFX][gfx-download] library folders in your `<arduinosketchfolder>/libraries/` folder. You may need to create the `libraries` subfolder if its your first library. Restart the Arduino IDE.
+
 
 
 Features
@@ -25,6 +30,10 @@ Features
 - Fast, no use of NOOP's.
 - Easy usage, one-line function to print text to display
 
+Notable Additions
+-----
+A new function in the format `void printToDisplay(String tape, int wait)` takes in a two parameters: a string of what to print to the display and a integer wait time to change how fast the text scrolls on the display.
+
 Usage
 -----
 
@@ -33,7 +42,8 @@ Read [overview][gfx-docs] for instructions how to use Adafruit_GFX. Check out ou
 At YouTube, you'll find a [ticker tape][tickertape] and [snake] demo.
 
 
-[download]: https://github.com/markruys/arduino-Max72xxPanel/archive/master.zip "Download Max72xxPanel library"
+
+[download]: https://github.com/TinkerYpsi/Max72xxPanel-tinkertech-simplified/archive/master.zip "Download Max72xxPanel-simplified library"
 [gfx-download]: https://github.com/adafruit/Adafruit-GFX-Library "Download Adafruit GFX Graphics Library"
 [gfx-docs]: http://learn.adafruit.com/adafruit-gfx-graphics-library/overview "Documentation Adafruit GFX Graphics Library"
 [examples]: https://github.com/markruys/arduino-Max72xxPanel/tree/master/examples "Show Max72xxPanel examples"

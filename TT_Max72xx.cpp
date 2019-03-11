@@ -16,7 +16,7 @@
 
 #include "Arduino.h"
 #include <Adafruit_GFX.h>
-#include "Max72xxPanel.h"
+#include "TT_Max72xx.h"
 #include <SPI.h>
 
 // The opcodes for the MAX7221 and MAX7219
@@ -35,17 +35,17 @@
 #define OP_SHUTDOWN    12
 #define OP_DISPLAYTEST 15
 
-Max72xxPanel::Max72xxPanel(byte csPin, byte hDisplays, byte vDisplays) : Adafruit_GFX(hDisplays << 3, vDisplays << 3) {
+TT_Max72xx::TT_Max72xx(byte csPin, byte hDisplays, byte vDisplays) : Adafruit_GFX(hDisplays << 3, vDisplays << 3) {
 
-  Max72xxPanel::SPI_CS = csPin;
+  TT_Max72xx::SPI_CS = csPin;
 
   byte displays = hDisplays * vDisplays;
-  Max72xxPanel::hDisplays = hDisplays;
-	Max72xxPanel::bitmapSize = displays << 3;
+  TT_Max72xx::hDisplays = hDisplays;
+	TT_Max72xx::bitmapSize = displays << 3;
 
-  Max72xxPanel::bitmap = (byte*)malloc(bitmapSize);
-  Max72xxPanel::matrixRotation = (byte*)malloc(displays);
-  Max72xxPanel::matrixPosition = (byte*)malloc(displays);
+  TT_Max72xx::bitmap = (byte*)malloc(bitmapSize);
+  TT_Max72xx::matrixRotation = (byte*)malloc(displays);
+  TT_Max72xx::matrixPosition = (byte*)malloc(displays);
 
   for ( byte display = 0; display < displays; display++ ) {
   	matrixPosition[display] = display;
@@ -76,31 +76,31 @@ Max72xxPanel::Max72xxPanel(byte csPin, byte hDisplays, byte vDisplays) : Adafrui
   setIntensity(7);
 }
 
-void Max72xxPanel::setPosition(byte display, byte x, byte y) {
+void TT_Max72xx::setPosition(byte display, byte x, byte y) {
 	matrixPosition[x + hDisplays * y] = display;
 }
 
-void Max72xxPanel::setRotation(byte display, byte rotation) {
+void TT_Max72xx::setRotation(byte display, byte rotation) {
 	matrixRotation[display] = rotation;
 }
 
-void Max72xxPanel::setRotation(uint8_t rotation) {
+void TT_Max72xx::setRotation(uint8_t rotation) {
 	Adafruit_GFX::setRotation(rotation);
 }
 
-void Max72xxPanel::shutdown(boolean b) {
+void TT_Max72xx::shutdown(boolean b) {
   spiTransfer(OP_SHUTDOWN, b ? 0 : 1);
 }
 
-void Max72xxPanel::setIntensity(byte intensity) {
+void TT_Max72xx::setIntensity(byte intensity) {
   spiTransfer(OP_INTENSITY, intensity);
 }
 
-void Max72xxPanel::fillScreen(uint16_t color) {
+void TT_Max72xx::fillScreen(uint16_t color) {
   memset(bitmap, color ? 0xff : 0, bitmapSize);
 }
 
-void Max72xxPanel::drawPixel(int16_t xx, int16_t yy, uint16_t color) {
+void TT_Max72xx::drawPixel(int16_t xx, int16_t yy, uint16_t color) {
 	// Operating in bytes is faster and takes less code to run. We don't
 	// need values above 200, so switch from 16 bit ints to 8 bit unsigned
 	// ints (bytes).
@@ -163,7 +163,7 @@ void Max72xxPanel::drawPixel(int16_t xx, int16_t yy, uint16_t color) {
 	}
 }
 
-void Max72xxPanel::write() {
+void TT_Max72xx::write() {
 	// Send the bitmap buffer to the displays.
 
 	for ( byte row = OP_DIGIT7; row >= OP_DIGIT0; row-- ) {
@@ -171,7 +171,7 @@ void Max72xxPanel::write() {
 	}
 }
 
-void Max72xxPanel::spiTransfer(byte opcode, byte data) {
+void TT_Max72xx::spiTransfer(byte opcode, byte data) {
 	// If opcode > OP_DIGIT7, send the opcode and data to all displays.
 	// If opcode <= OP_DIGIT7, display the column with data in our buffer for all displays.
 	// We do not support (nor need) to use the OP_NOOP opcode.
@@ -194,7 +194,7 @@ void Max72xxPanel::spiTransfer(byte opcode, byte data) {
 	digitalWrite(SPI_CS, HIGH);
 }
 
-void Max72xxPanel::printToDisplay(String tape, int wait, int letter_width, int spacer) {
+void TT_Max72xx::printToDisplay(String tape, int wait, int letter_width, int spacer) {
 	spacer += 1;
 	letter_width += 6;
 
